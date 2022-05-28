@@ -5,8 +5,8 @@ name: Update Github Stats
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  schedule:
-    - cron: "47 2 * * *"
+  schedule: # At minute 0 past every 2nd hour.
+    - cron: "0 */2 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,13 +39,13 @@ jobs:
           
       - name: Github Configurations
         run: |
-          git config --global user.name "Github Actions"
-          git config --global user.email "action@github.com"
+          git config --global user.name "renanbesserra"
+          git config --global user.email "renanbesserra@hotmail.co.uk"
           git pull
           
       - name: Update Template
         run: |
-          node updater.js ${{ github.repository_owner }} hacker
+          node updater.js ${{ github.github-stats-terminal-style }} powershell
         env:
           GHT: ${{ secrets.GHT }}
           
